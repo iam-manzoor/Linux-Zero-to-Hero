@@ -28,6 +28,7 @@ Linux is structured in layers, from hardware to user applications. Here's a high
   - **File System Management:** Handles storage, retrieval, and Permissions. Also support multiple FS.
   - **Network Management:** Manages network interface and protocols, allowing communication between networks.
   - **System Calls and Security:** Application requests kernel service via system calls, and the kernel enforces permissions and security policies.
-- **Kernel Space VS User Space:** 
+- **Kernel Space VS User Space:**
+  - **Kernel Space:** Protected memory area where the core part of the kernel, device drivers and related extensions run.
 - **Kernel Version:**
 - **Monolithic Kernel:**
