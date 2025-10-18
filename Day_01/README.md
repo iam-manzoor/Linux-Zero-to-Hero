@@ -29,6 +29,9 @@ Linux is structured in layers, from hardware to user applications. Here's a high
   - **Network Management:** Manages network interface and protocols, allowing communication between networks.
   - **System Calls and Security:** Application requests kernel service via system calls, and the kernel enforces permissions and security policies.
 - **Kernel Space VS User Space:**
-  - **Kernel Space:** Protected memory area where the core part of the kernel, device drivers and related extensions run.
+  - **Kernel Space:** Protected memory area where the core part of the kernel, device drivers, and related extensions run. It has full unrestricted access to all hardware and system resources. A isolated space to keep the system safe and stable.
+  - **User Space:** Memory area where the user application runs. It has limited access to the memory and can not directly interact with the Hardware. Its the restricted environment to prevent them from harming the system.
+  - **Why this separation:** The main reason is security and stability.
+  - **System Calls:** user-space programs cannot directly access the hardware or kernel memory. System call is a safe way to ask the kernel to perform a privileged operation on their behalf.
 - **Kernel Version:**
 - **Monolithic Kernel:**
