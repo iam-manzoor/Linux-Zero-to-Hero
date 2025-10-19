@@ -66,3 +66,10 @@ flowchart TD
     G --> H[ls Exits: exit System Call]
     H --> I[Shell Regains Control: Shows Prompt]
 ```
+
+### (d) User Applications and System Utilities
+- **User Applications:** End-user programs like web browsers, text editors (Vim), DevOps tools (Docker, Ansible), and servers (Apache). Interact with the OS via system calls through the shell or GUI.
+- **System Utilities:** Core commands (e.g., ls, grep, systemctl) for system interaction, provided by the GNU Project.
+- **File System:** Organizes data in a hierarchical structure; everything is a file.
+- **Processes:** Running instances of programs, managed by the kernel.
+- **Init System:** Manages system startup and services (systemd, SysVinit).
