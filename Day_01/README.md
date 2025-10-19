@@ -50,8 +50,8 @@ Let's break down, in very simple steps, what happens when you type a command lik
 4. **A New Process is Created:** The shell asks the operating system to start a new process (child process) for the `ls` command using a system call called (`fork()`). Each running program in Linux is a process, which is an instance of a program in memory.​
 5. **The Kernel Gets Involved:** The shell can't control the hardware directly. So, it asks the kernel (using a system call `execve()`) to create and run the process for ls.
 6. **The ls Program Runs:** The kernel loads the `ls` program into memory and starts running it as a new process. `ls` does its job: it reads the directory contents, often by making more system calls (e.g., `opendir()` to open the directory, `readdir()` to read entries) to the kernel to access the file system.
-7. **Output is Shown:** Once `ls` gets the list of files, it formats and prints the result to your terminal window using kernel system calls (`write()`)..
-8. **Process Ends:** When `ls` finishes its work, the process ends, and the shell gives you a new prompt to type another command.
+7. **Output is Shown:** Once `ls` gets the list of files, it formats and prints the result to your terminal window using kernel system calls (`write()`)
+8. **Process Ends:** When `ls` finishes its work, the process ends (`exit()` system call), and the shell gives you a new prompt to type another command.
 
 This process highlights the shell-kernel handoff, ensuring secure and efficient execution. In DevOps, understanding this enables better debugging of scripts and automation.
 
