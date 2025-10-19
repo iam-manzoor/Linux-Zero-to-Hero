@@ -33,5 +33,11 @@ Linux is structured in layers, from hardware to user applications. Here's a high
   - **User Space:** Memory area where the user application runs. It has limited access to the memory and can not directly interact with the Hardware. Its the restricted environment to prevent them from harming the system.
   - **Why this separation:** The main reason is security and stability.
   - **System Calls:** user-space programs cannot directly access the hardware or kernel memory. System call is a safe way to ask the kernel to perform a privileged operation on their behalf.
-- **Kernel Version:**
-- **Monolithic Kernel:**
+- **Kernel Version:** Numbered as X.Y.Z (e.g., 5.15.0) where X=major, Y=minor, Z=patch.
+- **Monolithic Kernel:** Core system services run together in  kernel space. Fast and less isolated.
+
+### Shell - Command Line Interface (CLI)
+- Shell/Command interpreter converts user commands into system calls.
+- Few Shell examples are `Bash`, `ZSH`, `Dash`, `Ksh`.
+- Essential for DevOps/SRE/Platform Engg scripting and automation.
+
