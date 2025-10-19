@@ -36,7 +36,7 @@ Linux is structured in layers, from hardware to user applications. Here's a high
 - **Kernel Version:** Numbered as X.Y.Z (e.g., 5.15.0) where X=major, Y=minor, Z=patch.
 - **Monolithic Kernel:** Core system services run together in  kernel space. Fast and less isolated.
 
-### Shell - Command Line Interface (CLI)
+### (3) Shell - Command Line Interface (CLI)
 - Shell/Command interpreter converts user commands into system calls.
 - Few Shell examples are `Bash`, `ZSH`, `Dash`, `Ksh`.
 - Essential for DevOps/SRE/Platform Engg scripting and automation.
@@ -67,7 +67,7 @@ flowchart TD
     H --> I[Shell Regains Control: Shows Prompt]
 ```
 
-### (d) User Applications and System Utilities
+### (4) User Applications and System Utilities
 - **User Applications:** End-user programs like web browsers, text editors (Vim), DevOps tools (Docker, Ansible), and servers (Apache). Interact with the OS via system calls through the shell or GUI.
 - **System Utilities:** Core commands (e.g., ls, grep, systemctl) for system interaction, provided by the GNU Project.
 - **File System:** Organizes data in a hierarchical structure; everything is a file.
