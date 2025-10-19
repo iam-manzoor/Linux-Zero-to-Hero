@@ -42,16 +42,16 @@ Linux is structured in layers, from hardware to user applications. Here's a high
 - Essential for DevOps/SRE/Platform Engg scripting and automation.
 
 #### What Happens When You Run a  Command? (Example: `ls`)
-When you type a command like `ls` (to list directory contents) and press Enter, the shell orchestrates a multi-step process involving user space and kernel space. Here's a step-by-step breakdown:
+Let's break down, in very simple steps, what happens when you type a command like `ls` and press Enter in a Linux terminal:
 
-1. **User Input:** You type `ls` in the terminal and press Enter. The terminal captures this as input.
-2. **Shell Parsing:** The shell (e.g., Bash) reads the command, parses it (checks for arguments, aliases, or built-ins), and determines it's an external program (`/bin/ls`).
-3. **Path Resolution:** The shell searches the `$PATH` environment variable for the executable (e.g., finds `/bin/ls`).
-4. **Process Creation:** The shell uses a system call (`fork()`) to create a child process for `ls`.
-5. **Kernel Execution:** The kernel switches to kernel mode, loads `/bin/ls` into memory (via `execve()` system call), and starts execution in user space.
-6. **Command Execution:** `ls` runs in user space, makes system calls (e.g., `opendir()` to open the directory, `readdir()` to read entries) to interact with the file system via the kernel.
-7. **Output Generation:** `ls` formats the output (e.g., file names) and writes it to stdout using kernel system calls (`write()`).
-8. **Process Termination:** `ls` exits, the child process ends (`exit()` system call), and the shell regains control, displaying the prompt.
+1. **You Type the Command:** You type `ls` (which lists files in your current directory) in the terminal and hit Enter.
+2. **The Shell Reads Your Input:** The shell (like Bash or Zsh) reads the command you entered.
+3. **Shell Finds the Program:** The shell searches for what `ls` means by checking the directories listed in your `$PATH` variable via system call (`access()`). If it finds an executable program called ls, it continues.​
+4. **A New Process is Created:** The shell asks the operating system to start a new process (child process) for the `ls` command using a system call called (`fork()`). Each running program in Linux is a process, which is an instance of a program in memory.​
+5. **The Kernel Gets Involved:** The shell can't control the hardware directly. So, it asks the kernel (using a system call `execve()`) to create and run the process for ls.
+6. **The ls Program Runs:** The kernel loads the `ls` program into memory and starts running it as a new process. `ls` does its job: it reads the directory contents, often by making more system calls (e.g., `opendir()` to open the directory, `readdir()` to read entries) to the kernel to access the file system.
+7. **Output is Shown:** Once `ls` gets the list of files, it formats and prints the result to your terminal window using kernel system calls (`write()`)..
+8. **Process Ends:** When `ls` finishes its work, the process ends, and the shell gives you a new prompt to type another command.
 
 This process highlights the shell-kernel handoff, ensuring secure and efficient execution. In DevOps, understanding this enables better debugging of scripts and automation.
 
