@@ -41,3 +41,28 @@ Linux is structured in layers, from hardware to user applications. Here's a high
 - Few Shell examples are `Bash`, `ZSH`, `Dash`, `Ksh`.
 - Essential for DevOps/SRE/Platform Engg scripting and automation.
 
+#### What Happens When You Run a  Command? (Example: `ls`)
+When you type a command like `ls` (to list directory contents) and press Enter, the shell orchestrates a multi-step process involving user space and kernel space. Here's a step-by-step breakdown:
+
+1. **User Input:** You type `ls` in the terminal and press Enter. The terminal captures this as input.
+2. **Shell Parsing:** The shell (e.g., Bash) reads the command, parses it (checks for arguments, aliases, or built-ins), and determines it's an external program (`/bin/ls`).
+3. **Path Resolution:** The shell searches the `$PATH` environment variable for the executable (e.g., finds `/bin/ls`).
+4. **Process Creation:** The shell uses a system call (`fork()`) to create a child process for `ls`.
+5. **Kernel Execution:** The kernel switches to kernel mode, loads `/bin/ls` into memory (via `execve()` system call), and starts execution in user space.
+6. **Command Execution:** `ls` runs in user space, makes system calls (e.g., `opendir()` to open the directory, `readdir()` to read entries) to interact with the file system via the kernel.
+7. **Output Generation:** `ls` formats the output (e.g., file names) and writes it to stdout using kernel system calls (`write()`).
+8. **Process Termination:** `ls` exits, the child process ends (`exit()` system call), and the shell regains control, displaying the prompt.
+
+This process highlights the shell-kernel handoff, ensuring secure and efficient execution. In DevOps, understanding this enables better debugging of scripts and automation.
+
+```mermaid
+flowchart TD
+    A[User Types 'ls' & Presses Enter] --> B[Shell Parses Command]
+    B --> C[Resolve Path: Find /bin/ls]
+    C --> D[System Call: fork - Create Child Process]
+    D --> E[Kernel Loads & Executes ls via execve]
+    E --> F[ls Runs in User Space: Calls opendir, readdir]
+    F --> G[System Calls: write Output to Terminal]
+    G --> H[ls Exits: exit System Call]
+    H --> I[Shell Regains Control: Shows Prompt]
+```
