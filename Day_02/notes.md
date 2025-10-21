@@ -8,3 +8,16 @@ Virtualization lets you create a "mini-computer" (VM) inside your real one—per
 - **Quick Win:** VirtualBox is free and runs on any OS your portable Linux lab.
 
 **Quick Fact:** Most cloud servers are VMs; mastering VirtualBox is like learning the alphabet before writing code.
+
+## What is Virtualization?
+- It is a technology that allows you to create multiple instances or virtual computers inside one physical Computer/Server.
+- These virtual instances act like a real computer/server but share the hardware resources, such as CPU, Memory, and Storage, from a single host machine.
+- Virtualization is achieved by using software called `Hypervisor`. It helps to make better use of hardware. It's widely used in cloud computing.
+
+### Key Components & How it works.
+- **Host vs. Guest:** The host is your physical machine (e.g., your laptop). Guests are the VMs running on it (e.g., a Linux server VM).
+- **Abstraction Layer:** The hypervisor (more on this below) emulates hardware for guests, allocating slices of CPU, RAM, disk, and network.
+- **Types of Virtualization:**
+  - **Server Virtualization:** Multiple OSes on one server (e.g., running Ubuntu and Windows VMs).
+  - **Desktop Virtualization:** Remote access to VMs (e.g., VDI for secure desktops).
+
