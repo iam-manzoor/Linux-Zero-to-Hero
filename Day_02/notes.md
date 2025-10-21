@@ -21,3 +21,9 @@ Virtualization lets you create a "mini-computer" (VM) inside your real one—per
   - **Server Virtualization:** Multiple OSes on one server (e.g., running Ubuntu and Windows VMs).
   - **Desktop Virtualization:** Remote access to VMs (e.g., VDI for secure desktops).
 
+### Benefits of Virtualization.
+- **Efficient resource use:** Reduce the need to purchase more hardware.
+- **Cost Savings:** By consolidating the workload on fewer physical machines, organizations lower capital expenses and operational costs related to maintenance and energy consumption.
+- **Scalability:** VMs can be quickly created, modified, or moved across multiple hosts.
+- **Disaster Recovery:** VMs can be backed up, cloned, and restored quickly.
+- **Isolation:** Virtualization creates an isolated environment. So you run dev/test without risking production.
