@@ -45,3 +45,54 @@ Hypervisors split into two camps based on where they run—interviewers often as
 | **Examples (2025)** | VMware ESXi (vSphere 9.0 with AI optimizations), Microsoft Hyper-V (integrated in Azure), KVM (Linux kernel module, used in OpenStack), Citrix XenServer (now Citrix Hypervisor 8.3). | Oracle VirtualBox (7.0 with Wayland support), VMware Workstation 17 (Pro for teams), Parallels Desktop 20 (Apple Silicon focus). |
 | **Pros** | Better scalability, efficiency for high-load (e.g., 1000+ VMs/node). | Easier setup, portable across OSes. |
 | **Cons** | Harder to install (dedicated hardware); vendor lock-in risks. | Slower; host OS vulnerabilities expose VMs. |
+
+## Linux Boot Process
+- The Linux boot process is a sequence of actions your system performs when you power it on. Let's break down each step in order.
+
+### Step 1: BIOS/UEFI
+- When you `Power ON` the system, `BIOS/UEFI` gets initialized (The firmware built into the motherboard). It runs the POST(Power On Self Test) to check RAM, CPU, Storage, and other hardware components.
+- It then searches for the bootloader, usually on your HDD or SSD.
+
+### Step 2: BootLoader (GRUB)
+- Bootloader's job is to start Linux.
+- There are two types of bootloaders: GRUB and LILO(Older Version)
+- GRUB loads the kernel and a small helper file called `initramfs` into memory.
+
+### Step 3: Kernel
+- Kernel: The heart/brain of the operating system.
+- It takes control from the bootloader, starts talking to hardware.
+- Mounts the `root` filesystem.
+
+### Step 4: Init/Systemd
+- The kernel starts a process called `INIT/SYSTEMD`, which is always the first running program with PID 1
+- `INIT/SYSTEMD` starts all the background programs called services and daemons that your system needs.
+
+### Step 5: Login & User Environment.
+- Once all the services are up, you get a login prompt
+- Now you can log in and start using the services.
+
+## Questions
+**1) What is MBR, and what is its process?**
+- Master Boot Record (MBR) is a 512-byte special section located at the start of the storage device.
+- 512-byte divided into 3 sections
+- **Bootloader Code:** 446 bytes, a small program that starts the process of loading OS
+- **Partition Table:** 64-byte Information about partition tables supports a 2TB disk and up to 4 primary partitions.
+- **Boot Signature:** 2 bytes. A marker tells the computer it's a valid MBR.
+
+**2) What is UEFI?**
+- Unified Extensible Firmware Interface: is firmware between computer firmware and the operating system, responsible for hardware initialization during boot.
+- Supports hard drives larger than 2TB using GPT (GUID Partition Table), can handle up to 128 partitions. 
+- Modern system uses UEFI.
+
+**3) Difference between MBR and GPT?**
+Feature             |  MBR (Master Boot Record)                  |  GPT (GUID Partition Table)              
+--------------------+--------------------------------------------+------------------------------------------
+Year Introduced     |  1983                                      |  2002                                    
+Firmware Type       |  BIOS                                      |  UEFI                                    
+Max Disk Size       |  2 TB                                      |  Up to 9.4 Zettabytes                    
+Partition Limit     |  4 primary partitions (or 3 + 1 extended)  |  Up to 128 partitions                    
+Data Storage        |  All boot data in one sector               |  Multiple copies + CRC for error checking
+Backup Table        |  None                                      |  Stored at both beginning and end of disk
+Reliability         |  Vulnerable to corruption                  |  Highly reliable and self-healing        
+Boot Compatibility  |  Legacy systems only                       |  Modern PCs, supports Secure Boot        
+Recovery Options    |  Limited                                   |  Built-in redundancy for recovery        
