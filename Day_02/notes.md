@@ -85,6 +85,7 @@ Hypervisors split into two camps based on where they run—interviewers often as
 - Modern system uses UEFI.
 
 **3) Difference between MBR and GPT?**
+
 Feature             |  MBR (Master Boot Record)                  |  GPT (GUID Partition Table)              
 --------------------+--------------------------------------------+------------------------------------------
 | Year Introduced     |  1983                                      |  2002                                    |
