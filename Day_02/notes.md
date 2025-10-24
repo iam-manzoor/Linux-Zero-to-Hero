@@ -86,14 +86,14 @@ Hypervisors split into two camps based on where they run—interviewers often as
 
 **3) Difference between MBR and GPT?**
 
-Feature             |  MBR (Master Boot Record)                  |  GPT (GUID Partition Table)              |
---------------------+--------------------------------------------+------------------------------------------
-| Year Introduced     |  1983                                      |  2002                                    |
-| Firmware Type       |  BIOS                                      |  UEFI                                    |
-| Max Disk Size       |  2 TB                                      |  Up to 9.4 Zettabytes                    |
-| Partition Limit     |  4 primary partitions (or 3 + 1 extended)  |  Up to 128 partitions                    |
-| Data Storage        |  All boot data in one sector               |  Multiple copies + CRC for error checking|
-| Backup Table        |  None                                      |  Stored at both beginning and end of disk|
-| Reliability         |  Vulnerable to corruption                  |  Highly reliable and self-healing        |
-| Boot Compatibility  |  Legacy systems only                       |  Modern PCs, supports Secure Boot        |
-| Recovery Options    |  Limited                                   |  Built-in redundancy for recovery        |
+|Feature             |  MBR (Master Boot Record)                  |  GPT (GUID Partition Table)              |
+|--------------------|--------------------------------------------|------------------------------------------ |
+| **Year Introduced**     |  1983                                      |  2002                                    |
+| **Firmware Type**      |  BIOS                                      |  UEFI                                    |
+| **Max Disk Size**       |  2 TB                                      |  Up to 9.4 Zettabytes                    |
+| **Partition Limit**     |  4 primary partitions (or 3 + 1 extended)  |  Up to 128 partitions                    |
+| **Data Storage**        |  All boot data in one sector               |  Multiple copies + CRC for error checking|
+| **Backup Table**        |  None                                      |  Stored at both beginning and end of disk|
+| **Reliability**         |  Vulnerable to corruption                  |  Highly reliable and self-healing        |
+| **Boot Compatibility**  |  Legacy systems only                       |  Modern PCs, supports Secure Boot        |
+| **Recovery Options**    |  Limited                                   |  Built-in redundancy for recovery        |
