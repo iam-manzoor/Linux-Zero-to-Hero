@@ -80,8 +80,8 @@
 ## Symbolic vs Hard Links
 - Symbolic links (symlinks) and hard links are two methods that Linux uses to reference the same file data in different ways. Both make files appear in multiple locations, but they differ fundamentally in how they point to data and how the system handles them.
 
-Feature                   |  Hard Link                                                                                     |  Symbolic (Soft) Link                                                             
---------------------------+------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------
+|Feature                   |  Hard Link                                                                                     |  Symbolic (Soft) Link      |                                                       
+|--------------------------|------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
 Definition                |  A direct reference to the same inode as the original file — both share the same data blocks.  |  A shortcut or pointer to the original file’s pathname.                           
 Command                   |  ln source_file link_name                                                                      |  ln -s source_file link_name                                                      
 Dependency                |  Independent of the original file — the data remains even if the original file is deleted.     |  Dependent on the original file — breaks if the original file is deleted or moved.
