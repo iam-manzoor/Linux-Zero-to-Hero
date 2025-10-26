@@ -92,6 +92,6 @@ Disk Space Usage          |  Occupies negligible extra space since data blocks a
 Performance               |  Slightly faster as it accesses data directly.                                                 |  Slightly slower due to path resolution.                                         
 
 ## Question
-1) Create a symlink and then create a hardlink using the source as the symlink. When the source file is deleted, the symlink will be broken. What is the result of a hardlink?
-  - Ans: Hardlink will be broken too.
+- 1) Create a symlink and then create a hardlink using the source as the symlink. When the source file is deleted, the symlink will be broken. What is the result of a hardlink?
+   - Ans: Hardlink will be broken too.
 
