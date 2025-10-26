@@ -51,7 +51,7 @@
   - **Hard Links:** Multiple filenames refer to the same data on the disk. Deleting one doesnt remove the data from the disk until all links are deleted.
   - **Block Device Files:** It represent devices that read/write data in blocks, such as a hard disk.
   - **Character Device Files:** Represent a device that handles data character by character, such as a keyboard.
-  - **Named Pipes (FIFO):** For inter-process communication.
+  - **Named Pipes (FIFO):** For inter-process communication. Marked with `p`
   - **Socket:** For network communication.
  
 
