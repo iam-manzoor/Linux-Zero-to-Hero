@@ -54,4 +54,39 @@
   - **Named Pipes (FIFO):** For inter-process communication. Marked with `p`
   - **Socket:** For network communication.
  
+## Navigating the Filesystem.
+- `cd <dir>`: Change directory
+- `ls`: List directory content
+- `pwd`: Present working directory
+- `tree`: Visualize directory structure.
 
+## Commands to Identify File Types
+- `ls -l`: Shows file type in first character:
+    - `-` Regular file
+    - `d` Directory
+    - `l` Symbolic link
+    - `c` Character device
+    - `b` Block device
+    - `p` Named pipe (FIFO)
+    - `s` Socket
+  - `file <filename>`: Describes file content type.
+  - `stat <filename>`: Detailed file metadata, including inode.
+
+## Navigating: Paths & Hidden Files
+- **Absolute Paths:** Full from / (e.g., /home/linuxthefinalboss/docs.txt).
+- **Relative Paths:** From current dir (e.g., ~/docs.txt or ../docs.txt).
+- **Hidden:** Dot-prefixed (.bashrc)—`ls -a` reveals; `find . -name ".*"` hunts.
+
+## Symbolic vs Hard Links
+- Symbolic links (symlinks) and hard links are two methods that Linux uses to reference the same file data in different ways. Both make files appear in multiple locations, but they differ fundamentally in how they point to data and how the system handles them.
+
+Feature                   |  Hard Link                                                                                     |  Symbolic (Soft) Link                                                             
+--------------------------+------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------
+Definition                |  A direct reference to the same inode as the original file — both share the same data blocks.  |  A shortcut or pointer to the original file’s pathname.                           
+Command                   |  ln source_file link_name                                                                      |  ln -s source_file link_name                                                      
+Dependency                |  Independent of the original file — the data remains even if the original file is deleted.     |  Dependent on the original file — breaks if the original file is deleted or moved.
+Cross-Filesystem Support  |  Cannot span multiple filesystems or partitions.                                               |  Can cross filesystem or partition boundaries.                                    
+Links to Directories      |  Not allowed (mostly restricted for safety).                                                   |  Allowed — can point to directories or files.                                     
+Inode Number              |  Shares the same inode number as the original file.                                            |  Has a different inode, storing only the path reference.                          
+Disk Space Usage          |  Occupies negligible extra space since data blocks are shared.                                 |  Uses small space for storing the target path.                                    
+Performance               |  Slightly faster as it accesses data directly.                                                 |  Slightly slower due to path resolution .                                         
