@@ -4,7 +4,7 @@
 - It's a tree-like structure where each directory has a specific role in system operation and management.
 - Filesystem Hierarchy Standard **(FHS)** organizes all the files and directories under a single root folder `/`.
 
-### Login Prompt.
+### Linux Shell Prompt.
 * `root@ubuntu:/$` OR `root@ubuntu:/#`
 - `root` is a UserName who logged in. Multiple users can use the same machine.
 - `ubuntu` is a Hostname.
