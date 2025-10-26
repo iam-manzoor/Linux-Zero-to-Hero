@@ -43,7 +43,7 @@
 - **/srv:** Data for services (web, ftp)—for sharing.
 
 ## Linux File Types:
-- There are `regular files, `directories`, and `special files`. The special files are further divided into subtypes.
+- There are `regular files`, `directories`, and `special files`. The special files are further divided into subtypes.
 - **Regular Files:** Most common files storing data such as text, images, scripts, or binaries. They are indicated by dash `-` when you run `ls -l` command.
 - **Directory Files:** Special files container reference to other files and directories. Indicated by `d` in the permission field.
 - **Special Files:** There are subtypes.
