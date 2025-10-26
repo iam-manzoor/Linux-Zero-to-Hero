@@ -10,5 +10,5 @@
 - `ubuntu` is a Hostname.
 - `/` or `~` - Points to the current dir.
 
-- <img width="259" height="98" alt="image" src="https://github.com/user-attachments/assets/707af81a-7d3a-4099-9eb2-cea66dcf6c10" />
+ <img width="259" height="98" alt="image" src="https://github.com/user-attachments/assets/707af81a-7d3a-4099-9eb2-cea66dcf6c10" />
 
