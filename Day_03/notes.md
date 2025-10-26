@@ -88,5 +88,10 @@ Dependency                |  Independent of the original file — the data remai
 Cross-Filesystem Support  |  Cannot span multiple filesystems or partitions.                                               |  Can cross filesystem or partition boundaries.                                    
 Links to Directories      |  Not allowed (mostly restricted for safety).                                                   |  Allowed — can point to directories or files.                                     
 Inode Number              |  Shares the same inode number as the original file.                                            |  Has a different inode, storing only the path reference.                          
-Disk Space Usage          |  Occupies negligible extra space since data blocks are shared.                                 |  Uses small space for storing the target path.                                    
-Performance               |  Slightly faster as it accesses data directly.                                                 |  Slightly slower due to path resolution .                                         
+Disk Space Usage          |  Occupies negligible extra space since data blocks are shared.                                 |  Uses a small space for storing the target path.                                    
+Performance               |  Slightly faster as it accesses data directly.                                                 |  Slightly slower due to path resolution.                                         
+
+## Question
+- 1) Create a symlink and then create a hardlink using the source as the symlink. When the source file is deleted symlink will be broken. What is the result of a hardlink?
+  - Ans: Hardlink will be broken too.
+
