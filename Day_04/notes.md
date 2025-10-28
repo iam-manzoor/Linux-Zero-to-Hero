@@ -52,3 +52,15 @@ ExecStop=/usr/bin/redis-cli shutdown
 [Install]
 WantedBy=multi-user.target
 ```
+
+### Init vs systemd
+|Feature                   |  Init (SysVinit)                |  systemd                                               |
+--------------------------+---------------------------------+--------------------------------------------------------|
+|Boot Startup              |  Sequential scripts             |  Parallel startup with dependency handling             |
+Service Configuration     |  Shell scripts (/etc/init.d/)   |  Unit files (.service,.socket, etc.)                   
+Dependency Handling       |  Manual                         |  Automatic usingRequires=,After=                       
+Service Management Tools  |  Minimal (servicecommand)       |  Advanced (systemctl,journalctl)                       
+Logging                   |  Separate syslog                |  Integrated journaling system                          
+Features                  |  Basic                          |  Advanced (timers, resource control, socket activation)
+Resource Usage            |  Lightweight                    |  More resource-intensive                               
+Adoption                  |  Older systems, minimal setups  |  Default in modern Linux distributions                 
