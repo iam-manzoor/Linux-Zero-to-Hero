@@ -94,4 +94,10 @@ Performance               |  Slightly faster as it accesses data directly.      
 ## Question
 - Create a symlink and then create a hardlink using the source as the symlink. When the source file is deleted, the symlink will be broken. What is the result of a hardlink?
    - Ans: Hardlink will be broken too.
+ 
+- What is `initramfs`?
+  - Ans: A temporary root filesystem loaded into the memory by the Linux Kernel during the boot process to mount the actual root filesystem.
+  - Kernel runs the `/init` program within the `initramfs` to mount the real filesystem.
+ 
+  
 
