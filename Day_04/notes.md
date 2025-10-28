@@ -37,3 +37,18 @@
     - Restart = specifying restart behavior on failure
     - User= and Group= to run the service under a specific system user/group.​
   - **[Install]:** This optional section defines how the unit should be enabled or disabled, specifying the target(s) the unit should be linked to when enabled (e.g., WantedBy=multi-user.target). This controls whether the unit starts automatically on boot.
+
+### Sample Redis unit file
+```bash
+[Unit]
+Description=Redis In-Memory Data Store
+
+[Service]
+User=redis
+Group=redis
+ExecStart=/usr/bin/redis-server /etc/redis/redis.conf
+ExecStop=/usr/bin/redis-cli shutdown
+
+[Install]
+WantedBy=multi-user.target
+```
