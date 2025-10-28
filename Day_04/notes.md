@@ -1,6 +1,7 @@
 # Service Management in Linux with Systemd
 - Service management in Linux is predominantly handled by `systemd` in modern distributions, providing powerful and flexible control over system and application services using unit files and the systemctl command.
 - Managing services with systemd is mainly about using the `systemctl` command. Whether you need to start, stop, restart, or check on a service, systemctl does the job.
+- Unit files are stored in locations such as `/etc/systemd/system/,` `/usr/lib/systemd/system/,` or `/run/systemd/system/` with administrator-created/customized files typically in `/etc/systemd/system/`.
 
 - **Service Management with systemd:**
   ```bash
