@@ -30,7 +30,7 @@
 ## Structure and Sections of a systemd Unit File
 - Systemd unit files are divided into sections denoted by square brackets [] with section names that are case-sensitive. The key sections are:
 
-  - **[Unit]:** This section defines metadata about the unit, like a human-readable description, and it configures dependencies and ordering relationships with other units using directives like After=, Requires=, or Wants=.​
+  - **[Unit]:** This section defines metadata about the unit, like a human-readable description, and it configures dependencies and ordering relationships with other units using directives like `After=,` `Requires=,` or `Wants=.`​
   - **[Service]:** Present in service units (.service files), this section defines how to start and manage the service. Directives here include:
     - ExecStart = for the command to launch the service
     - ExecStop = for stopping the service
