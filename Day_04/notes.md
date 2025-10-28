@@ -199,3 +199,27 @@ sudo rm -rf /var/log/nginx /etc/nginx
 # RHEL/CentOS
 sudo yum remove -y nginx
 ```
+
+## Sample Interview Questions
+1. Explain the complete Linux boot process, step by step.
+2. What is the difference between BIOS and UEFI?
+3. What is the role of the bootloader, and how can you troubleshoot bootloader issues?
+4. Compare systemd, SysVinit, and Upstart. Why is systemd preferred in modern distributions?
+5. How do you check if a service is enabled to start at boot? How do you enable/disable it?
+6. What is the difference between `systemctl stop` and `systemctl disable`?
+7. How can you view logs for a specific service?
+8. What would you do if a critical service fails to start during boot?
+9. How can you secure the bootloader?
+10. What is the purpose of the `dmesg` command?
+
+## Interview Question Answers
+1. **Boot Process:** BIOS/UEFI → Bootloader (GRUB) → Kernel loading → Init system (systemd) → User space services
+2. **BIOS vs UEFI:** BIOS is legacy firmware with 16-bit mode; UEFI is modern with 32/64-bit, faster boot, secure boot, and GUI
+3. **Bootloader:** GRUB loads kernel and initramfs; troubleshoot with rescue mode, check `/boot/grub/grub.cfg`, use `grub-install`
+4. **Init Systems:** systemd is parallel, faster, dependency-based; SysVinit is sequential, script-based; Upstart was transitional
+5. **Service Boot Management:** `systemctl is-enabled service`, `systemctl enable/disable service`
+6. **Stop vs Disable:** `stop` halts running service; `disable` prevents auto-start at boot
+7. **Service Logs:** `journalctl -u service`, `systemctl status service` shows recent logs
+8. **Failed Service:** Check `systemctl status`, `journalctl -u service`, use rescue mode, check dependencies
+9. **Secure Bootloader:** Set GRUB password, enable secure boot, restrict physical access
+10. **dmesg Purpose:** Shows kernel ring buffer messages, hardware detection, driver loading, boot errors
