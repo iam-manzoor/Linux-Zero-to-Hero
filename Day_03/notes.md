@@ -98,6 +98,6 @@ Performance               |  Slightly faster as it accesses data directly.      
 - What is `initramfs`?
   - Ans: A temporary root filesystem loaded into the memory by the Linux Kernel during the boot process to mount the actual root filesystem.
   - Kernel runs the `/init` program within the `initramfs` to mount the real filesystem.
- 
-  
 
+- What are `runlevels` in Linux?
+- How the default runlevel is selected during the boot process?
