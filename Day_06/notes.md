@@ -492,3 +492,37 @@ cut -d' ' -f5 sample.log | grep '^192'
     ```bash
     awk '{ gsub(/[aeiou]/, "", $4); print $4 }' sample.log | tr -d '\n'
     ```
+
+---
+
+## Sample Interview Questions
+
+1. How do you search for a specific word in a log file, case-insensitively?
+2. How do you print specific columns from a text file using awk?
+3. How do you replace text in a file using sed, in-place?
+4. How do you count unique entries in a column, with occurrences?
+5. How do you process multiple files matching a pattern with find and exec?
+6. How do you delete lines containing a certain pattern with sed?
+7. How do you combine commands to get unique IPs from error logs?
+8. How do you use tr for string manipulation, like deleting characters?
+9. How do you print a range of lines from a file with sed or awk?
+10. How do you chain commands with pipes for sorting and deduping?
+11. What's the difference between grep -exec and xargs?
+12. How would you find and compress all .log files over 10MB?
+
+---
+
+## Interview Question Answers
+
+1. `grep -i 'word' sample.log`
+2. `awk '{print $2, $4}' sample.log`
+3. `sed -i 's/oldtext/newtext/g' sample.log`
+4. `awk '{print $4}' sample.log | sort | uniq -c`
+5. `find . -name '*.log' -exec command {} +`
+6. `sed '/pattern/d' sample.log`
+7. `grep 'ERROR' sample.log | awk '{print $5}' | sort | uniq`
+8. `echo "text" | tr -d 'aeiou'` (deletes vowels)
+9. `sed -n '3,6p' sample.log` or `awk 'NR>=3 && NR<=6' sample.log`
+10. `grep 'ERROR' sample.log | awk '{print $4}' | sort | uniq`
+11. `-exec` runs command per file (slower for many); `xargs` batches args (faster, handles large input).
+12. `find . -name '*.log' -size +10M -exec gzip {} +`
