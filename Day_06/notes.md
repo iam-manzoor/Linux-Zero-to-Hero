@@ -368,3 +368,127 @@ tr -d '\n' < sample.log | tr -s ' '
 -s -> When the character appears multiple times consecutively, it ensures it appears only once in the output.
 -d -> delete the following character wherever it appears. tr -d '0-9'
 ```
+
+---
+
+## Extract IP Addresses
+
+Extracting IP addresses from log files is a common task, whether working with web server logs or application logs. This can be done with awk (field extraction) or grep (regex matching).
+
+### Example 1: Web server logs (access.log)
+
+```bash
+# Sample log entries (web server format)
+echo "172.16.0.2 - - [01/Oct/2025:19:10:00 +0530] \"GET /about HTTP/1.1\" 200 2048" >> access.log
+echo "203.0.113.25 - - [01/Oct/2025:19:15:00 +0530] \"POST /submit HTTP/1.1\" 404 256" >> access.log
+
+# Method 1: Using grep with regex pattern to extract IP addresses
+grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' access.log
+
+# Method 2: Using awk to extract the first field (IP address)
+awk '/[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/ {print $1}' access.log
+
+# Count unique IPs
+grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' access.log | sort | uniq -c
+```
+
+### Example 2: Course sample logs (sample.log)
+
+We'll use the provided sample.log (see top of these notes) for all course command demos.
+
+```bash
+# Extract IP addresses (column 5) using awk
+awk '{print $5}' sample.log
+
+# Extract IP addresses with grep regex (matches any IP-like pattern)
+grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' sample.log
+
+# Extract only unique IP addresses
+awk '{print $5}' sample.log | sort | uniq
+
+# Filter IPs starting with 192 using cut and grep
+cut -d' ' -f5 sample.log | grep '^192'
+```
+
+---
+
+## Sample Exercises
+
+1. Search for all ERROR log entries and count them.
+2. Print all unique usernames found in the logs, sorted reverse-alphabetically.
+3. Replace every "user1" with "admin" in the log file (in-place with backup).
+4. Count how many times each log level appears, sorted by count descending.
+5. Extract all unique IP addresses and count their occurrences.
+6. Extract all IP addresses from sample.log and from access.log (if available), then merge and deduplicate.
+7. Print lines 3 through 6 of the sample.log file using both sed and awk.
+8. Delete all INFO entries from the log file (output to a new file) and uppercase the remaining log levels.
+9. Find all .log files modified in the last day and grep for "ERROR" in them.
+10. Use tr to remove all vowels from usernames in the logs.
+
+---
+
+## Solutions
+
+1. **Search for ERROR log entries and count:**
+   ```bash
+   grep 'ERROR' sample.log
+   grep -c 'ERROR' sample.log
+   ```
+
+2. **Print unique usernames, sorted reverse:**
+   ```bash
+   awk '{print $4}' sample.log | sort | uniq | sort -r
+   ```
+
+3. **Replace every "user1" with "admin" (in-place with backup):**
+   ```bash
+   sed -i.bak 's/user1/admin/g' sample.log
+   ```
+
+4. **Count log levels, sorted by count descending:**
+   ```bash
+   awk '{count[$3]++} END {for (level in count) print level, count[level]}' sample.log | sort -k2 -nr
+   awk '{print $3}' sample.log.bak | sort | uniq -c | sort -k1 -nr
+   ```
+
+5. **Extract unique IPs with counts:**
+   ```bash
+   awk '{print $5}' sample.log | sort | uniq -c
+   ```
+
+6. **Extract and merge IPs:**
+   - From sample.log:
+     ```bash
+     awk '{print $5}' sample.log
+     grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' sample.log
+     ```
+   - From access.log:
+     ```bash
+     grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' access.log
+     awk '/[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/ {print $1}' access.log
+     ```
+   - Merge and dedup:
+     ```bash
+     (awk '{print $5}' sample.log; grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' access.log) | sort | uniq
+     ```
+
+7. **Print lines 3 through 6:**
+   ```bash
+   sed -n '3,6p' sample.log
+   awk 'NR >= 3 && NR <= 6' sample.log
+   ```
+
+8. **Delete INFO and uppercase levels:**
+   ```bash
+   sed '/INFO/d' sample.log | awk '{ $3 = toupper($3); print }' > no_info_sample.log
+   ```
+
+9. **Find recent .log files and grep ERROR:**
+   ```bash
+   find . -name '*.log' -mtime -1 -exec grep 'ERROR' {} +
+   ```
+
+10. **Remove vowels from usernames:**
+    ```bash
+    awk '{ gsub(/[aeiou]/, "", $4); print $4 }' sample.log | tr -d '\n'
+    ```
