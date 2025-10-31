@@ -150,7 +150,6 @@ Flushes output line-by-line immediately (useful in pipelines).
 ### awk
 **awk** processes text by records (lines) and fields (space-separated by default). Use patterns/actions for filtering, math, and formatting. FS (field separator) and OFS (output separator) are customizable.
 
-```bash
 #### Print entire line matching a pattern:
 ```
 awk '/error/ {print $0}' logfile.txt
@@ -194,3 +193,54 @@ awk '{sum += $2} END {print "Total:", sum}' file.txt
 Adds values in 2nd column and prints total after processing all lines.
 
 ---
+
+### sed (Stream Editor)
+**sed** edits streams/files non-interactively: substitute, delete, insert, or transform. Use -i for in-place edits (with backup via -i.bak). Chain commands with -e.
+
+#### Replace first occurrence of a string in each line:
+```
+sed 's/old/new/' file.txt
+```
+Replaces first "old" with "new" in each line.
+
+#### Replace all occurrences in each line (global):
+```
+sed 's/old/new/g' file.txt
+```
+Replaces all "old" with "new" in each line.
+
+#### Replace string only on a specific line:
+```
+sed '3 s/old/new/' file.txt
+```
+Replaces "old" with "new" on line 3 only.
+
+#### Delete lines matching a pattern:
+```
+sed '/pattern/d' file.txt
+```
+Deletes lines containing "pattern".
+
+#### Print specific lines (line range):
+```
+sed -n '5,10p' file.txt
+```
+Prints only lines 5 to 10 (-n suppresses default output).
+
+#### In-place replace (backup to .bak)
+```
+sed -i.bak 's/user1/admin/g' sample.log
+```
+Take a backup of the file and store the changes permanently.
+
+#### Insert a line before matched line:
+```
+sed '/pattern/i New line added before' file.txt
+```
+Inserts preceded text above lines matching "pattern".
+
+#### Append a line after matched line:
+```
+sed '/pattern/a New line added after' file.txt
+```
+Adds text after lines matching "pattern".
