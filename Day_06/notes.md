@@ -244,3 +244,89 @@ Inserts preceded text above lines matching "pattern".
 sed '/pattern/a New line added after' file.txt
 ```
 Adds text after lines matching "pattern".
+
+---
+
+### find & xargs
+**find** locates files/directories by criteria (name, type, size, time, permissions). **xargs** reads stdin to build/execute commands, handling args safely (e.g., -0 for null-separated input).
+
+Here are important options of the find command with explanations and examples:
+
+#### -name — Search files/directories by name (case-sensitive)
+```
+find . -name "*.log"
+```
+Finds all .log files in the current directory and subdirectories.
+
+#### -iname — Case-insensitive name search
+```
+find /var -iname "README*"
+```
+Finds files starting with "README" regardless of letter case.
+
+#### -type — Search by file type (f for regular files, d for directories, l for symbolic links)
+```
+find /tmp -type d
+```
+Lists directories only under /tmp.
+
+#### -size — Find files by size
+```
+find /home -size +10M
+```
+Finds files larger than 10 MB in /home.
+
+#### -mtime, -atime, -ctime — Find by modified, accessed, or changed time (days ago)
+```
+find /var/log -mtime -7
+```
+Finds files modified within the last 7 days under /var/log.
+
+#### -perm — Find files with specific permissions
+```
+find / -perm 644
+```
+Finds files with permission rw-r--r--.
+
+#### -user and -group — Find files owned by specific user or group
+```
+find /var/www -user www-data
+```
+Finds files owned by user www-data.
+
+#### -empty — Find empty files or directories
+```
+find . -empty
+```
+Finds empty files or folders in the current path.
+
+#### -exec — Execute a command on each found file
+```
+find . -name "*.tmp" -exec rm {} \;
+```
+Deletes all .tmp files found.
+
+#### -maxdepth and -mindepth — Limit search depth
+```
+find /etc -maxdepth 1 -name "*.conf"
+```
+Searches only in /etc (not in subdirectories) for .conf files.
+
+#### -prune — Exclude directories from search
+```
+find . -path ./dir_to_exclude -prune -o -name "*.log" -print
+```
+Skips searching inside dir_to_exclude.
+
+#### Use xargs with placeholder for complex args
+```
+find . -name '*.log' | xargs -I {} grep -c 'ERROR' {}
+-I -> run the command once per file/input file. 
+```
+If the result is multiple files `xargs -I {} grep -c 'ERROR' {}` execute grep command once per file.
+
+#### Search for "ERROR" in all .log files
+```
+find . -name '*.log' -exec grep 'ERROR' {} +
+```
+`+` If the result is multiple files execute grep command all at once.
