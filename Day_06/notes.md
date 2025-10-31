@@ -330,3 +330,41 @@ If the result is multiple files `xargs -I {} grep -c 'ERROR' {}` execute grep co
 find . -name '*.log' -exec grep 'ERROR' {} +
 ```
 `+` If the result is multiple files execute grep command all at once.
+
+---
+
+### cut, sort, uniq, tr
+- **cut** extracts sections: -d for delimiter, -f for fields, -c for characters.
+- **sort** orders: -n numeric, -r reverse, -k key field, -u unique.
+- **uniq** deduplicates: -c count, -i ignore case, -d duplicates only.
+- **tr** transforms: -d delete, -s squeeze repeats, -c complement set.
+
+These are essential for extracting and cleaning up data.
+
+```bash
+# Extract only IP addresses (column 5)
+cut -d' ' -f5 sample.log
+
+# Show unique usernames
+awk '{print $4}' sample.log | sort | uniq
+
+# Count unique IP addresses
+awk '{print $5}' sample.log | sort | uniq | wc -l
+
+# Convert usernames and log levels to uppercase
+awk '{print $3, $4}' sample.log | tr 'a-z' 'A-Z'
+
+# cut characters: First 10 chars per line
+cut -c1-10 sample.log
+
+# sort numeric by timestamp (column 2)
+cut -d' ' -f2 sample.log | sort -n
+
+# uniq with count and ignore case
+echo -e "User\nuser\nUser" | sort | uniq -i -c
+
+# tr delete newlines and squeeze spaces
+tr -d '\n' < sample.log | tr -s ' '
+-s -> When the character appears multiple times consecutively, it ensures it appears only once in the output.
+-d -> delete the following character wherever it appears. tr -d '0-9'
+```
